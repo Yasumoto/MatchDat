@@ -24,6 +24,7 @@
 		40B19370184DA72D00639F74 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B1936F184DA72D00639F74 /* Card.m */; };
 		40B19373184DAD5F00639F74 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B19372184DAD5F00639F74 /* Deck.m */; };
 		40B19376184DB09D00639F74 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B19375184DB09D00639F74 /* PlayingCard.m */; };
+		40B19379184DB67100639F74 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B19378184DB67100639F74 /* PlayingCardDeck.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		40B19372184DAD5F00639F74 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		40B19374184DB09D00639F74 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
 		40B19375184DB09D00639F74 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCard.m; sourceTree = "<group>"; };
+		40B19377184DB67100639F74 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
+		40B19378184DB67100639F74 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 				40B1936F184DA72D00639F74 /* Card.m */,
 				40B19371184DAD5F00639F74 /* Deck.h */,
 				40B19374184DB09D00639F74 /* PlayingCard.h */,
+				40B19377184DB67100639F74 /* PlayingCardDeck.h */,
+				40B19378184DB67100639F74 /* PlayingCardDeck.m */,
 				40B19375184DB09D00639F74 /* PlayingCard.m */,
 				40B19372184DAD5F00639F74 /* Deck.m */,
 			);
@@ -269,6 +274,7 @@
 				40B19373184DAD5F00639F74 /* Deck.m in Sources */,
 				40B19348184D9F5800639F74 /* CardGameAppDelegate.m in Sources */,
 				40B1934E184D9F5800639F74 /* CardGameViewController.m in Sources */,
+				40B19379184DB67100639F74 /* PlayingCardDeck.m in Sources */,
 				40B19344184D9F5800639F74 /* main.m in Sources */,
 				40B19370184DA72D00639F74 /* Card.m in Sources */,
 			);
