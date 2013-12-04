@@ -18,7 +18,9 @@
 @implementation CardGameViewController
 
 - (Deck *) deck {
-    if (!_deck) _deck = [[PlayingCardDeck alloc] init];
+    Card *card = [_deck drawRandomCard];
+    if (!card) _deck = [[PlayingCardDeck alloc] init];
+    else [_deck addCard:card];
     return _deck;
 }
 
