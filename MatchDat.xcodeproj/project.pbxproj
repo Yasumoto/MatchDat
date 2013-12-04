@@ -124,19 +124,12 @@
 		40B1933D184D9F5800639F74 /* MatchDat */ = {
 			isa = PBXGroup;
 			children = (
+				40B1937A184EF5E700639F74 /* Model */,
 				40B19349184D9F5800639F74 /* Main.storyboard */,
 				40B1934C184D9F5800639F74 /* CardGameViewController.h */,
 				40B1934D184D9F5800639F74 /* CardGameViewController.m */,
 				40B1934F184D9F5800639F74 /* Images.xcassets */,
 				40B1933E184D9F5800639F74 /* Supporting Files */,
-				40B1936E184DA72D00639F74 /* Card.h */,
-				40B1936F184DA72D00639F74 /* Card.m */,
-				40B19371184DAD5F00639F74 /* Deck.h */,
-				40B19374184DB09D00639F74 /* PlayingCard.h */,
-				40B19377184DB67100639F74 /* PlayingCardDeck.h */,
-				40B19378184DB67100639F74 /* PlayingCardDeck.m */,
-				40B19375184DB09D00639F74 /* PlayingCard.m */,
-				40B19372184DAD5F00639F74 /* Deck.m */,
 			);
 			path = MatchDat;
 			sourceTree = "<group>";
@@ -170,6 +163,21 @@
 				40B1935F184D9F5800639F74 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40B1937A184EF5E700639F74 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40B1936E184DA72D00639F74 /* Card.h */,
+				40B1936F184DA72D00639F74 /* Card.m */,
+				40B19374184DB09D00639F74 /* PlayingCard.h */,
+				40B19375184DB09D00639F74 /* PlayingCard.m */,
+				40B19371184DAD5F00639F74 /* Deck.h */,
+				40B19372184DAD5F00639F74 /* Deck.m */,
+				40B19377184DB67100639F74 /* PlayingCardDeck.h */,
+				40B19378184DB67100639F74 /* PlayingCardDeck.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
