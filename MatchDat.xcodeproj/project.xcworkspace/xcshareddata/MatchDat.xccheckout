@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A265FE1E-E4A2-4CEF-AE7E-001C52D5DF0C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MatchDat</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EC4FF310-FB43-49FE-8669-3230578AB0AD</key>
+		<string>https://github.com/Yasumoto/MatchDat.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MatchDat.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EC4FF310-FB43-49FE-8669-3230578AB0AD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Yasumoto/MatchDat.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EC4FF310-FB43-49FE-8669-3230578AB0AD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EC4FF310-FB43-49FE-8669-3230578AB0AD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MatchDat</string>
+		</dict>
+	</array>
+</dict>
+</plist>
