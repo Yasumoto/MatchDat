@@ -54,6 +54,12 @@
             score = 1;
         }
     }
+    else {
+        for (Card *otherCard in otherCards) {
+         //TODO(jsmith): Pull it together.
+        }
+        
+    }
     
     return score;
 }

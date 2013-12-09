@@ -13,6 +13,7 @@
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *maxMatchedCardsSegmentedControl;
 @property (strong, nonatomic) CardMatchingGame *game;
 @end
 
