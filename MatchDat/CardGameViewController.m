@@ -24,6 +24,11 @@
     return _game;
 }
 
+- (IBAction)redealGame {
+    self.game = nil;
+    [self updateUI];
+}
+
 - (Deck *) createDeck {
     return [[PlayingCardDeck alloc] init];
 }
