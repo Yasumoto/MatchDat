@@ -27,6 +27,7 @@
 
 - (IBAction)redealGame {
     self.game = nil;
+    self.maxMatchedCardsSegmentedControl.enabled = true;
     [self updateUI];
 }
 
@@ -35,9 +36,15 @@
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
-    int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
-    [self.game chooseCardAtIndex:chosenButtonIndex];
-    [self updateUI];
+    self.maxMatchedCardsSegmentedControl.enabled = false;
+    if (self.maxMatchedCardsSegmentedControl.selectedSegmentIndex == 0) {
+        int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+        [self.game chooseCardAtIndex:chosenButtonIndex];
+        [self updateUI];
+    }
+    else {
+        NSLog(@"GIMMEH");
+    }
 }
 
 - (void) updateUI {

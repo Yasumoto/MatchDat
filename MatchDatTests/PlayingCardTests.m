@@ -64,17 +64,17 @@
 }
 
 - (void) testMatchSuitMultipleTwo {
-    self.card.rank = 5;
-    self.card.suit = [PlayingCard validSuits][0];
+    self.card.rank = 10;
+    self.card.suit = [PlayingCard validSuits][2];
     NSArray *match_cards = [NSArray arrayWithObjects:[self createMockCard], [self createMockCardTwo], nil];
     XCTAssertEqual(3, [self.card match:match_cards], @"Failure to match %@ to %@", self.card, match_cards);
 }
 
 - (void) testMatchRankMultipleTwo {
     self.card.rank = 10;
-    self.card.suit = [PlayingCard validSuits][1];
+    self.card.suit = [PlayingCard validSuits][2];
     NSArray *match_cards = @[[self createMockCard], [self createMockCardTwo]];
-    XCTAssertEqual(2, [self.card match:match_cards], "@Rank not matched with %@ to %@", self.card, match_cards);
+    XCTAssertEqual(3, [self.card match:match_cards], "@Rank not matched with %@ to %@", self.card, match_cards);
 }
 
 - (void) testMatchSuitNone {
