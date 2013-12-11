@@ -55,8 +55,12 @@
         }
     }
     else {
-        for (Card *otherCard in otherCards) {
-         //TODO(jsmith): Pull it together.
+        for (PlayingCard *otherCard in otherCards) {
+            if (otherCard.rank == self.rank) {
+                score += 2;
+            } else if ([otherCard.suit isEqualToString:self.suit]) {
+                score += 1;
+            }
         }
         
     }
