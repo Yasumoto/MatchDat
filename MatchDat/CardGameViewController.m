@@ -15,9 +15,15 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *maxMatchedCardsSegmentedControl;
 @property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) NSMutableArray *cardIndices; // of NSUInteger
 @end
 
 @implementation CardGameViewController
+
+- (NSMutableArray *) cardIndices {
+    if (!_cardIndices) _cardIndices = [[NSMutableArray alloc] initWithCapacity:2];
+    return _cardIndices;
+}
 
 - (CardMatchingGame *) game {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
@@ -35,16 +41,30 @@
     return [[PlayingCardDeck alloc] init];
 }
 
+//TODO(jsmith): Derp, pull out game-specific logic into the actual game
 - (IBAction)touchCardButton:(UIButton *)sender {
     self.maxMatchedCardsSegmentedControl.enabled = false;
     if (self.maxMatchedCardsSegmentedControl.selectedSegmentIndex == 0) {
         int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
         [self.game chooseCardAtIndex:chosenButtonIndex];
-        [self updateUI];
     }
     else {
-        NSLog(@"GIMMEH");
+        NSNumber *chosenButtonIndex = [NSNumber numberWithInt:[self.cardButtons indexOfObject:sender]];
+        [self.cardIndices addObject:chosenButtonIndex];
+        if (self.cardIndices.count == 3) {
+            // Ready to match
+            for (NSNumber *chosenButtonIndex in self.cardIndices) {
+                [self.game chooseCardAtIndex:chosenButtonIndex.intValue];
+
+            }
+            self.cardIndices = nil;
+        } else {
+            Card *card = [self.game cardAtIndex:chosenButtonIndex.intValue];
+            card.chosen = true;
+            sender.enabled = false;
+        }
     }
+    [self updateUI];
 }
 
 - (void) updateUI {

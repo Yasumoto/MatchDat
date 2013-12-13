@@ -68,7 +68,8 @@ static const int COST_TO_CHOOSE = 1;
                         self.score -= MISMATCH_PENALTY;
                         otherCard.chosen = NO;
                     }
-                    break;
+                    //TODO(jsmith): Not convinced this should be here
+                    //break;
                 }
             }
             self.score -= COST_TO_CHOOSE;
