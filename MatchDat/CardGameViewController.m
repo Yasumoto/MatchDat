@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *maxMatchedCardsSegmentedControl;
+@property (weak, nonatomic) IBOutlet UILabel *matchDescriptionLabel;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) NSMutableArray *cardIndices; // of NSUInteger
 @end
