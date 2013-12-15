@@ -33,6 +33,7 @@
 
 - (IBAction)redealGame {
     self.game = nil;
+    self.cardIndices = nil;
     self.maxMatchedCardsSegmentedControl.enabled = true;
     [self updateUI];
 }
@@ -41,7 +42,6 @@
     return [[PlayingCardDeck alloc] init];
 }
 
-//TODO(jsmith): Derp, pull out game-specific logic into the actual game
 - (IBAction)touchCardButton:(UIButton *)sender {
     self.maxMatchedCardsSegmentedControl.enabled = false;
     if (self.maxMatchedCardsSegmentedControl.selectedSegmentIndex == 0) {
@@ -53,15 +53,15 @@
         [self.cardIndices addObject:chosenButtonIndex];
         if (self.cardIndices.count == 3) {
             // Ready to match
-            for (NSNumber *chosenButtonIndex in self.cardIndices) {
-                [self.game chooseCardAtIndex:chosenButtonIndex.intValue];
+            for (NSNumber *chosenCardIndex in self.cardIndices) {
+                [self.game chooseCardAtIndex:chosenCardIndex.intValue];
 
             }
             self.cardIndices = nil;
+            //[[self.game cardAtIndex:chosenButtonIndex.intValue] setChosen:false];
         } else {
             Card *card = [self.game cardAtIndex:chosenButtonIndex.intValue];
             card.chosen = true;
-            sender.enabled = false;
         }
     }
     [self updateUI];

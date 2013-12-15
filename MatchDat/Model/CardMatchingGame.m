@@ -49,32 +49,34 @@ static const int COST_TO_CHOOSE = 1;
 
 - (void) chooseCardAtIndex:(NSUInteger)index {
     Card *card = [self cardAtIndex:index];
-    
+    NSMutableArray *chosenUnmatchedCards = [[NSMutableArray alloc] initWithCapacity:2];
     if (!card.isMatched) {
         if (card.isChosen) {
+            [chosenUnmatchedCards addObject:card];
             card.chosen = NO;
         }
         else {
             // match against other chosen cards
             for (Card *otherCard in self.cards) {
                 if (otherCard.isChosen && !otherCard.isMatched) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        self.score += matchScore * MATCH_BONUS;
-                        otherCard.matched = YES;
-                        card.matched = YES;
-                    }
-                    else {
-                        self.score -= MISMATCH_PENALTY;
-                        otherCard.chosen = NO;
-                    }
-                    //TODO(jsmith): Not convinced this should be here
-                    //break;
+                    [chosenUnmatchedCards addObject:otherCard];
                 }
             }
-            self.score -= COST_TO_CHOOSE;
-            card.chosen = YES;
+            for (Card *otherCard in chosenUnmatchedCards) {
+                int matchScore = [card match:@[otherCard]];
+                if (matchScore) {
+                    self.score += matchScore * MATCH_BONUS;
+                    otherCard.matched = YES;
+                    card.matched = YES;
+                }
+                else {
+                    otherCard.chosen = NO;
+                    self.score -= MISMATCH_PENALTY;
+                }
+            }
         }
+        self.score -= COST_TO_CHOOSE;
+        card.chosen = YES;
     }
 }
 
