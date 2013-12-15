@@ -46,21 +46,23 @@
 - (IBAction)touchCardButton:(UIButton *)sender {
     self.maxMatchedCardsSegmentedControl.enabled = false;
     if (self.maxMatchedCardsSegmentedControl.selectedSegmentIndex == 0) {
+        NSLog(@"Playing Match 2");
         int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
         [self.game chooseCardAtIndex:chosenButtonIndex];
     }
     else {
+        NSLog(@"Playing Match 3");
         NSNumber *chosenButtonIndex = [NSNumber numberWithInt:[self.cardButtons indexOfObject:sender]];
         [self.cardIndices addObject:chosenButtonIndex];
         if (self.cardIndices.count == 3) {
-            // Ready to match
+            NSLog(@"Kicking off a chooseMatch3");
             for (NSNumber *chosenCardIndex in self.cardIndices) {
                 [self.game chooseCardAtIndex:chosenCardIndex.intValue];
 
             }
             self.cardIndices = nil;
-            //[[self.game cardAtIndex:chosenButtonIndex.intValue] setChosen:false];
         } else {
+            NSLog(@"Not enough cards for a Match 3 yet: %@", self.cardIndices);
             Card *card = [self.game cardAtIndex:chosenButtonIndex.intValue];
             card.chosen = true;
         }
