@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4025F2C118553578007B7FEF /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4025F2C018553578007B7FEF /* CardMatchingGame.m */; };
+		40ACA329185EDAB6003FE6D9 /* CardMatchingGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 40ACA328185EDAB6003FE6D9 /* CardMatchingGameTests.m */; };
 		40B19338184D9F5800639F74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B19337184D9F5800639F74 /* Foundation.framework */; };
 		40B1933A184D9F5800639F74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B19339184D9F5800639F74 /* CoreGraphics.framework */; };
 		40B1933C184D9F5800639F74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B1933B184D9F5800639F74 /* UIKit.framework */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		4025F2BF18553578007B7FEF /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		4025F2C018553578007B7FEF /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
+		40ACA328185EDAB6003FE6D9 /* CardMatchingGameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGameTests.m; sourceTree = "<group>"; };
 		40B19334184D9F5800639F74 /* MatchDat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchDat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B19337184D9F5800639F74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		40B19339184D9F5800639F74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +160,7 @@
 				D89481001858122000BAFDAE /* PlayingCardTests.m */,
 				40B19362184D9F5800639F74 /* MatchDatTests.m */,
 				40B1935D184D9F5800639F74 /* Supporting Files */,
+				40ACA328185EDAB6003FE6D9 /* CardMatchingGameTests.m */,
 			);
 			path = MatchDatTests;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			files = (
 				40B19363184D9F5800639F74 /* MatchDatTests.m in Sources */,
 				D89481011858122000BAFDAE /* PlayingCardTests.m in Sources */,
+				40ACA329185EDAB6003FE6D9 /* CardMatchingGameTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
