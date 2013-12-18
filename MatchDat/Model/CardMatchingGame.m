@@ -22,7 +22,7 @@
 
 - (instancetype) initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck {
     self = [super init];
-    
+
     if (self) {
         for (int i = 0; i < count; i++) {
             Card *card = [deck drawRandomCard];
@@ -35,7 +35,6 @@
             }
         }
     }
-    
     return self;
 }
 
@@ -51,35 +50,31 @@ static const int COST_TO_CHOOSE = 1;
     Card *card = [self cardAtIndex:index];
     NSMutableArray *chosenUnmatchedCards = [[NSMutableArray alloc] initWithCapacity:2];
     if (!card.isMatched) {
-        NSLog(@"Not matched! %@", card.contents);
-        if (card.isChosen) {
-            NSLog(@"Adding card: %@", card.contents);
-            [chosenUnmatchedCards addObject:card];
-            card.chosen = NO;
+        [chosenUnmatchedCards addObject:card];
+        card.chosen = NO;
+        // match against other chosen cards
+        for (Card *otherCard in self.cards) {
+            if (otherCard.isChosen && !otherCard.isMatched) {
+                [chosenUnmatchedCards addObject:otherCard];
+            }
         }
-        else {
-            // match against other chosen cards
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    [chosenUnmatchedCards addObject:otherCard];
+        for (Card *card in chosenUnmatchedCards) {
+            NSMutableArray *otherCards = [chosenUnmatchedCards mutableCopy];
+            [otherCards removeObject:card];
+            for (Card *otherCard in otherCards) {
+                int matchScore = [card match:@[otherCard]];
+                if (matchScore) {
+                    self.score += matchScore * MATCH_BONUS;
+                    otherCard.matched = YES;
+                    card.matched = YES;
+                }
+                else {
+                    if (!otherCard.isMatched) otherCard.chosen = NO;
+                    self.score -= MISMATCH_PENALTY;
                 }
             }
-            for (Card *card in chosenUnmatchedCards) {
-                NSLog(@"Dat card: %@", card.contents);
-                NSMutableArray *otherCards = [chosenUnmatchedCards mutableCopy];
-                [otherCards removeObject:card];
-                for (Card *otherCard in otherCards) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        self.score += matchScore * MATCH_BONUS;
-                        otherCard.matched = YES;
-                        card.matched = YES;
-                    }
-                    else {
-                        if (!otherCard.isMatched) otherCard.chosen = NO;
-                        self.score -= MISMATCH_PENALTY;
-                    }
-                }
+            if (chosenUnmatchedCards.count == 2) {
+                break;
             }
         }
         self.score -= COST_TO_CHOOSE;
