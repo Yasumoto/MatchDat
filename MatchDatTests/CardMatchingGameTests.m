@@ -51,10 +51,36 @@ static const int DECK_SIZE = 10;
     self.game = [[CardMatchingGame alloc] initWithCardCount:DECK_SIZE usingDeck:self.deck];
 }
 
-- (void) testChooseTwoCards {
-    self.CardOne.chosen = true;
+- (void) testChooseTwoCardsSuit {
+    self.cardOne.chosen = true;
     [self.game chooseCardAtIndex:5];
-    XCTAssertEqual(, [self.card match:[NSArray arrayWithObject:[self createMockCard]]]);
+    XCTAssertEqual(3, self.game.score);
+}
+
+- (void) testChooseTwoCardsRank {
+    self.cardOne.rank = 5;
+    self.cardOne.suit = [PlayingCard validSuits][1];
+    self.cardOne.chosen = true;
+    [self.game chooseCardAtIndex:5];
+    XCTAssertEqual(15, self.game.score);
+}
+
+- (void) testChooseThreeCardsSuit {
+    self.cardOne.chosen = true;
+    self.cardTwo.chosen = true;
+    [self.game chooseCardAtIndex:5];
+    XCTAssertEqual(7, self.game.score);
+}
+
+- (void) testChooseThreeCardsRank {
+    self.cardOne.rank = 5;
+    self.cardOne.suit = [PlayingCard validSuits][1];
+    self.cardTwo.rank = 5;
+    self.cardTwo.suit = [PlayingCard validSuits][2];
+    self.cardOne.chosen = true;
+    self.cardTwo.chosen = true;
+    [self.game chooseCardAtIndex:5];
+    XCTAssertEqual(31, self.game.score);
 }
 
 @end
