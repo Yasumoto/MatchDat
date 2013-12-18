@@ -61,6 +61,8 @@
 
             }
             self.cardIndices = nil;
+            Card *pickedCard = [self.game cardAtIndex:chosenButtonIndex.intValue];
+            if (!pickedCard.isMatched) [self.cardIndices addObject:chosenButtonIndex];
         } else {
             NSLog(@"Not enough cards for a Match 3 yet: %@", self.cardIndices);
             Card *card = [self.game cardAtIndex:chosenButtonIndex.intValue];
