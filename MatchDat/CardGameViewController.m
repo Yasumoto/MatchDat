@@ -72,6 +72,15 @@
     [self updateUI];
 }
 
+- (void) updateMatchDescriptionLabel {
+    NSString *cardContents = [[NSString alloc] initWithFormat:@""];
+    for (NSNumber *cardIndex in self.cardIndices) {
+        cardContents = [cardContents stringByAppendingString:[[self.game cardAtIndex:[cardIndex intValue]] contents]];
+    }
+    self.matchDescriptionLabel.text = cardContents;
+
+}
+
 - (void) updateUI {
     for (UIButton *cardButton in self.cardButtons) {
         int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
@@ -81,6 +90,7 @@
         cardButton.enabled = !card.isMatched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     }
+    [self updateMatchDescriptionLabel];
 }
 
 - (NSString *) titleForCard:(Card *)card {
