@@ -414,7 +414,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="T5o-Th-yej">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="T5o-Th-yej">
                                 <rect key="frame" x="162" y="399" width="140" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -425,6 +425,7 @@
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="historySlider" destination="T5o-Th-yej" id="aJY-yY-Upm"/>
                         <outlet property="matchDescriptionLabel" destination="tkw-iD-HHH" id="McK-Do-pJU"/>
                         <outlet property="maxMatchedCardsSegmentedControl" destination="Jpq-Ao-xhc" id="JJs-pZ-buu"/>
                         <outlet property="scoreLabel" destination="b08-Qs-cjn" id="cDC-th-OZE"/>

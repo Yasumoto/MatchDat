@@ -87,7 +87,6 @@ static const int COST_TO_CHOOSE = 1;
         }
         card.chosen = YES;
     }
-    NSLog(@"chosenScoreChange: %d", chosenScoreChange);
     if (chosenScoreChange > 0) {
         [self setCardsToMatched:chosenUnmatchedCards];
     }

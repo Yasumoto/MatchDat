@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *cardIndices; // of NSUInteger
 @property (strong, nonatomic) NSMutableArray *history; // of NSString
 - (IBAction)historySliderValueChanged:(UISlider *)sender;
+@property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @property (nonatomic) int oldScore;
 @end
 
@@ -32,6 +33,11 @@
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                           usingDeck:[self createDeck]];
     return _game;
+}
+
+- (NSMutableArray *) history {
+    if (!_history) _history = [[NSMutableArray alloc] init];
+    return _history;
 }
 
 - (IBAction)redealGame {
@@ -50,16 +56,14 @@
 - (IBAction)touchCardButton:(UIButton *)sender {
     self.maxMatchedCardsSegmentedControl.enabled = false;
     if (self.maxMatchedCardsSegmentedControl.selectedSegmentIndex == 0) {
-        NSLog(@"Playing Match 2");
         int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
         [self.game chooseCardAtIndex:chosenButtonIndex];
+        [self.history addObject:self.game.lastMove];
     }
     else {
-        NSLog(@"Playing Match 3");
         NSNumber *chosenButtonIndex = [NSNumber numberWithInt:[self.cardButtons indexOfObject:sender]];
         [self.cardIndices addObject:chosenButtonIndex];
         if (self.cardIndices.count == 3) {
-            NSLog(@"Kicking off a chooseMatch3");
             for (NSNumber *chosenCardIndex in self.cardIndices) {
                 [self.game chooseCardAtIndex:chosenCardIndex.intValue];
 
@@ -67,13 +71,13 @@
             self.cardIndices = nil;
             Card *pickedCard = [self.game cardAtIndex:chosenButtonIndex.intValue];
             if (!pickedCard.isMatched) [self.cardIndices addObject:chosenButtonIndex];
-            [self.history arrayByAddingObject:self.game.lastMove];
+            [self.history addObject:self.game.lastMove];
         } else {
-            NSLog(@"Not enough cards for a Match 3 yet: %@", self.cardIndices);
             Card *card = [self.game cardAtIndex:chosenButtonIndex.intValue];
             card.chosen = true;
         }
     }
+    
     [self updateUI];
 }
 
@@ -86,6 +90,8 @@
         cardButton.enabled = !card.isMatched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     }
+    self.historySlider.maximumValue = self.history.count;
+    self.historySlider.value = self.historySlider.maximumValue;
     self.matchDescriptionLabel.text = self.game.lastMove;
 }
 
@@ -98,5 +104,9 @@
 }
 
 - (IBAction)historySliderValueChanged:(UISlider *)sender {
+    NSInteger index = [[NSNumber numberWithFloat:sender.value] integerValue];
+    if (index < self.history.count) {
+        self.matchDescriptionLabel.text = [self.history objectAtIndex:index];
+    }
 }
 @end
