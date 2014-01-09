@@ -17,6 +17,7 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) NSMutableArray *cardIndices; // of NSUInteger
 @property (strong, nonatomic) NSMutableArray *history; // of NSString
+- (IBAction)historySliderValueChanged:(UISlider *)sender;
 @property (nonatomic) int oldScore;
 @end
 
@@ -96,4 +97,6 @@
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
 }
 
+- (IBAction)historySliderValueChanged:(UISlider *)sender {
+}
 @end

@@ -50,6 +50,13 @@
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
 
+- (void) setCardsToMatched:(NSArray *)cards {
+    for (Card *card in cards) {
+        card.chosen = true;
+        card.matched = true;
+    }
+}
+
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
@@ -61,10 +68,9 @@ static const int COST_TO_CHOOSE = 1;
     if (!card.isMatched) {
         [chosenUnmatchedCards addObject:card];
         card.chosen = NO;
-        // find other chosen cards
+        // find chosen cards
         for (Card *otherCard in self.cards) {
             if (otherCard.isChosen && !otherCard.isMatched) {
-                otherCard.matched = YES;
                 [chosenUnmatchedCards addObject:otherCard];
             }
         }
@@ -80,6 +86,10 @@ static const int COST_TO_CHOOSE = 1;
             }
         }
         card.chosen = YES;
+    }
+    NSLog(@"chosenScoreChange: %d", chosenScoreChange);
+    if (chosenScoreChange > 0) {
+        [self setCardsToMatched:chosenUnmatchedCards];
     }
     [self updateLastMoveWithCards:chosenUnmatchedCards score:chosenScoreChange];
     self.score += chosenScoreChange;
