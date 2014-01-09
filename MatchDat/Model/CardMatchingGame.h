@@ -21,4 +21,5 @@
 
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSString *lastMove;
+@property (nonatomic) NSInteger cardsToMatch; // default is 2
 @end

@@ -16,6 +16,11 @@
 
 @implementation CardMatchingGame
 
+- (NSInteger) cardsToMatch {
+    if (!_cardsToMatch) _cardsToMatch = 2;
+    return _cardsToMatch;
+}
+
 - (void) updateLastMoveWithCards:(NSArray *)cards score:(int)score {
     NSString *move = @"";
     for (Card *card in cards) {
@@ -64,16 +69,20 @@ static const int COST_TO_CHOOSE = 1;
 - (void) chooseCardAtIndex:(NSUInteger)index {
     int chosenScoreChange = 0 - COST_TO_CHOOSE;
     Card *card = [self cardAtIndex:index];
-    NSMutableArray *chosenUnmatchedCards = [[NSMutableArray alloc] initWithCapacity:2];
+    card.chosen = YES;
+    NSMutableArray *chosenUnmatchedCards = [[NSMutableArray alloc] initWithCapacity:3];
+
     if (!card.isMatched) {
-        [chosenUnmatchedCards addObject:card];
-        card.chosen = NO;
         // find chosen cards
         for (Card *otherCard in self.cards) {
             if (otherCard.isChosen && !otherCard.isMatched) {
                 [chosenUnmatchedCards addObject:otherCard];
             }
         }
+        if (chosenUnmatchedCards.count != self.cardsToMatch) {
+            return;
+        }
+        card.chosen = NO;
         for (Card *eachCard in chosenUnmatchedCards) {
             NSMutableArray *otherCards = [chosenUnmatchedCards mutableCopy];
             [otherCards removeObject:eachCard];
@@ -89,6 +98,9 @@ static const int COST_TO_CHOOSE = 1;
     }
     if (chosenScoreChange > 0) {
         [self setCardsToMatched:chosenUnmatchedCards];
+    }
+    for (Card *card in chosenUnmatchedCards) {
+        NSLog(@"Card: %@", card.contents);
     }
     [self updateLastMoveWithCards:chosenUnmatchedCards score:chosenScoreChange];
     self.score += chosenScoreChange;

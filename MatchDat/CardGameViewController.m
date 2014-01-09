@@ -58,9 +58,10 @@
     if (self.maxMatchedCardsSegmentedControl.selectedSegmentIndex == 0) {
         int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
         [self.game chooseCardAtIndex:chosenButtonIndex];
-        [self.history addObject:self.game.lastMove];
+        if (self.game.lastMove) [self.history addObject:self.game.lastMove];
     }
     else {
+        self.game.cardsToMatch = 3;
         NSNumber *chosenButtonIndex = [NSNumber numberWithInt:[self.cardButtons indexOfObject:sender]];
         [self.cardIndices addObject:chosenButtonIndex];
         if (self.cardIndices.count == 3) {
