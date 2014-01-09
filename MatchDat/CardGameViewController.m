@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *matchDescriptionLabel;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) NSMutableArray *cardIndices; // of NSUInteger
+@property (strong, nonatomic) NSMutableArray *history; // of NSString
+@property (nonatomic) int oldScore;
 @end
 
 @implementation CardGameViewController
@@ -35,6 +37,8 @@
     self.game = nil;
     self.cardIndices = nil;
     self.maxMatchedCardsSegmentedControl.enabled = true;
+    self.oldScore = 0;
+    self.history = nil;
     [self updateUI];
 }
 
@@ -62,6 +66,7 @@
             self.cardIndices = nil;
             Card *pickedCard = [self.game cardAtIndex:chosenButtonIndex.intValue];
             if (!pickedCard.isMatched) [self.cardIndices addObject:chosenButtonIndex];
+            [self.history arrayByAddingObject:self.game.lastMove];
         } else {
             NSLog(@"Not enough cards for a Match 3 yet: %@", self.cardIndices);
             Card *card = [self.game cardAtIndex:chosenButtonIndex.intValue];
@@ -69,15 +74,6 @@
         }
     }
     [self updateUI];
-}
-
-- (void) updateMatchDescriptionLabel {
-    NSString *cardContents = [[NSString alloc] initWithFormat:@""];
-    for (NSNumber *cardIndex in self.cardIndices) {
-        cardContents = [cardContents stringByAppendingString:[[self.game cardAtIndex:[cardIndex intValue]] contents]];
-    }
-    self.matchDescriptionLabel.text = cardContents;
-
 }
 
 - (void) updateUI {
@@ -89,7 +85,7 @@
         cardButton.enabled = !card.isMatched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     }
-    [self updateMatchDescriptionLabel];
+    self.matchDescriptionLabel.text = self.game.lastMove;
 }
 
 - (NSString *) titleForCard:(Card *)card {

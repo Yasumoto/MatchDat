@@ -10,10 +10,19 @@
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
+@property (nonatomic, readwrite) NSString *lastMove;
 @property (nonatomic, strong) NSMutableArray *cards; //of Card
 @end
 
 @implementation CardMatchingGame
+
+- (void) updateHistoryWithCards:(NSArray *)cards score:(int)score {
+    NSString *move = @"";
+    for (Card *card in cards) {
+        move = [move stringByAppendingString:card.contents];
+    }
+    self.lastMove = [NSString stringWithFormat:@"%@ %d", move, score];
+}
 
 - (NSMutableArray *) cards {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
@@ -47,12 +56,13 @@ static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
 
 - (void) chooseCardAtIndex:(NSUInteger)index {
+    int chosenScoreChange = 0;
     Card *card = [self cardAtIndex:index];
     NSMutableArray *chosenUnmatchedCards = [[NSMutableArray alloc] initWithCapacity:2];
     if (!card.isMatched) {
         [chosenUnmatchedCards addObject:card];
         card.chosen = NO;
-        // match against other chosen cards
+        // find against other chosen cards
         for (Card *otherCard in self.cards) {
             if (otherCard.isChosen && !otherCard.isMatched) {
                 [chosenUnmatchedCards addObject:otherCard];
@@ -61,26 +71,20 @@ static const int COST_TO_CHOOSE = 1;
         for (Card *card in chosenUnmatchedCards) {
             NSMutableArray *otherCards = [chosenUnmatchedCards mutableCopy];
             [otherCards removeObject:card];
-            for (Card *otherCard in otherCards) {
-                int matchScore = [card match:@[otherCard]];
-                if (matchScore) {
-                    self.score += matchScore * MATCH_BONUS;
-                    otherCard.chosen = YES;
-                    otherCard.matched = YES;
-                    card.matched = YES;
-                }
-                else {
-                    if (!otherCard.isMatched) otherCard.chosen = NO;
-                    self.score -= MISMATCH_PENALTY;
-                }
+            int matchScore = [card match:otherCards];
+            if (matchScore) {
+                chosenScoreChange += matchScore * MATCH_BONUS;
+                card.matched = YES;
             }
-            if (chosenUnmatchedCards.count == 2) {
-                break;
+            else {
+                card.chosen = NO;
             }
         }
-        self.score -= COST_TO_CHOOSE;
+        chosenScoreChange -= COST_TO_CHOOSE;
         card.chosen = YES;
     }
+    [self updateHistoryWithCards:chosenUnmatchedCards score:chosenScoreChange];
+    self.score += chosenScoreChange;
 }
 
 @end
