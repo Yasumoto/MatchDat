@@ -55,7 +55,7 @@ static const int DECK_SIZE = 10;
     self.cardOne.chosen = true;
     NSLog(@"We've chosen cardOne: %@", self.cardOne.contents);
     [self.game chooseCardAtIndex:9];
-    XCTAssertEqual(3, self.game.score);
+    XCTAssertEqual(7, self.game.score);
 }
 
 - (void) testChooseTwoCardsRank {
@@ -63,7 +63,7 @@ static const int DECK_SIZE = 10;
     self.cardOne.suit = [PlayingCard validSuits][1];
     self.cardOne.chosen = true;
     [self.game chooseCardAtIndex:5];
-    XCTAssertEqual(15, self.game.score);
+    XCTAssertEqual(31, self.game.score);
 }
 
 - (void) testChooseThreeCardsSuit {

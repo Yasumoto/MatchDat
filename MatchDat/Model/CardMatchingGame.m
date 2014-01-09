@@ -16,7 +16,7 @@
 
 @implementation CardMatchingGame
 
-- (void) updateHistoryWithCards:(NSArray *)cards score:(int)score {
+- (void) updateLastMoveWithCards:(NSArray *)cards score:(int)score {
     NSString *move = @"";
     for (Card *card in cards) {
         move = [move stringByAppendingString:card.contents];
@@ -31,7 +31,6 @@
 
 - (instancetype) initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck {
     self = [super init];
-
     if (self) {
         for (int i = 0; i < count; i++) {
             Card *card = [deck drawRandomCard];
@@ -56,34 +55,33 @@ static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
 
 - (void) chooseCardAtIndex:(NSUInteger)index {
-    int chosenScoreChange = 0;
+    int chosenScoreChange = 0 - COST_TO_CHOOSE;
     Card *card = [self cardAtIndex:index];
     NSMutableArray *chosenUnmatchedCards = [[NSMutableArray alloc] initWithCapacity:2];
     if (!card.isMatched) {
         [chosenUnmatchedCards addObject:card];
         card.chosen = NO;
-        // find against other chosen cards
+        // find other chosen cards
         for (Card *otherCard in self.cards) {
             if (otherCard.isChosen && !otherCard.isMatched) {
+                otherCard.matched = YES;
                 [chosenUnmatchedCards addObject:otherCard];
             }
         }
-        for (Card *card in chosenUnmatchedCards) {
+        for (Card *eachCard in chosenUnmatchedCards) {
             NSMutableArray *otherCards = [chosenUnmatchedCards mutableCopy];
-            [otherCards removeObject:card];
-            int matchScore = [card match:otherCards];
+            [otherCards removeObject:eachCard];
+            int matchScore = [eachCard match:otherCards];
             if (matchScore) {
                 chosenScoreChange += matchScore * MATCH_BONUS;
-                card.matched = YES;
             }
             else {
-                card.chosen = NO;
+                eachCard.chosen = NO;
             }
         }
-        chosenScoreChange -= COST_TO_CHOOSE;
         card.chosen = YES;
     }
-    [self updateHistoryWithCards:chosenUnmatchedCards score:chosenScoreChange];
+    [self updateLastMoveWithCards:chosenUnmatchedCards score:chosenScoreChange];
     self.score += chosenScoreChange;
 }
 
