@@ -10,6 +10,11 @@
 
 @interface SetCard : Card
 
++ (NSArray *) validNumbers;
++ (NSArray *) validSymbols;
++ (NSArray *) validShading;
++ (NSArray *) validColors;
+
 extern NSString *SET_SYMBOL_DIAMOND;// = @"▲";
 extern NSString *SET_SYMBOL_SQUIGGLE;// = @"●";
 extern NSString *SET_SYMBOL_OVAL;// = @"■";
@@ -22,7 +27,7 @@ extern NSString *SET_COLOR_RED;
 extern NSString *SET_COLOR_GREEN;
 extern NSString *SET_COLOR_PURPLE;
 
-@property (nonatomic) NSUInteger number;
+@property (strong, nonatomic) NSNumber *number;
 @property (strong, nonatomic) NSString *symbol;
 @property (strong, nonatomic) NSString *shading;
 @property (strong, nonatomic) NSString *color;

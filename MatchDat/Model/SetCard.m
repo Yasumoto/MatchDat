@@ -31,6 +31,10 @@ NSString const *SET_COLOR_PURPLE = @"PURPLE";
     return @"";
 }
 
++ (NSArray *) validNumbers {
+    return @[@1, @2, @3];
+}
+
 + (NSArray *) validSymbols {
     return @[SET_SYMBOL_DIAMOND, SET_SYMBOL_OVAL, SET_SYMBOL_SQUIGGLE];
 }
@@ -58,6 +62,13 @@ NSString const *SET_COLOR_PURPLE = @"PURPLE";
 - (void) setColor:(NSString *)color {
     if ([[SetCard validColors] containsObject:color]) {
         _color = color;
+    }
+}
+
+- (void) setNumber:(NSNumber *)number {
+    if ([[SetCard validNumbers] containsObject:number]) {
+        NSLog(@"Success, setting number to %d", number.intValue);
+        _number = number;
     }
 }
 
