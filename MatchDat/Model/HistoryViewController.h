@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HistoryViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextView *historyTextView;
-
+@property (nonatomic, strong) NSArray *history; //of NSString
 @end

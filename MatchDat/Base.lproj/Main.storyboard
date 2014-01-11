@@ -411,7 +411,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="0MH-Do-3l9"/>
                     <connections>
-                        <outlet property="historyTextView" destination="967-e1-n2A" id="noL-vw-dGp"/>
+                        <outlet property="historyTextView" destination="967-e1-n2A" id="nzk-an-fQh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="etP-hG-wGn" userLabel="First Responder" sceneMemberID="firstResponder"/>

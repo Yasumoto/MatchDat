@@ -8,6 +8,7 @@
 
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
+#import "HistoryViewController.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -42,7 +43,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"displayHistory"]) {
-
+        HistoryViewController *dvc = segue.destinationViewController;
+        dvc.history = self.history;
     }
 }
 

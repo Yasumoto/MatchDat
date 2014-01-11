@@ -9,30 +9,23 @@
 #import "HistoryViewController.h"
 
 @interface HistoryViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *historyTextView;
 
++ (NSString *) appendedStringsFromArray:(NSArray *) array;
 @end
 
 @implementation HistoryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
++ (NSString *) appendedStringsFromArray:(NSArray *)array {
+    NSString *concatenated = @"";
+    for (NSString *string in array) {
+        concatenated = [NSString stringWithFormat:@"%@\n%@", concatenated, string];
     }
-    return self;
+    return concatenated;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) viewWillAppear:(BOOL)animated {
+    self.historyTextView.text = [HistoryViewController appendedStringsFromArray:self.history];
 }
 
 @end
