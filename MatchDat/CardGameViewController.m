@@ -40,6 +40,12 @@
     return _history;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"displayHistory"]) {
+
+    }
+}
+
 - (IBAction)redealGame {
     self.game = nil;
     self.cardIndices = nil;
