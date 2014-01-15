@@ -105,11 +105,11 @@
 }
 
 - (NSString *) titleForCard:(Card *)card {
-    return card.isChosen ? card.contents : @"";
+    return nil;
 }
 
 - (UIImage *) backgroundImageForCard:(Card *) card {
-    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
+    return nil;
 }
 
 - (IBAction)historySliderValueChanged:(UISlider *)sender {

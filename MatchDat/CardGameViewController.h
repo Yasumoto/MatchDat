@@ -11,6 +11,8 @@
 
 @interface CardGameViewController : UIViewController
 
-- (Deck *) createDeck; // abstract method
+- (Deck *) createDeck; //abstract method
+- (NSString *) titleForCard:(Card *)card; //abstract method
+- (UIImage *) backgroundImageForCard:(Card *) card; //abstract method
 
 @end
