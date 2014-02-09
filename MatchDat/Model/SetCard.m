@@ -67,7 +67,6 @@ NSString const *SET_COLOR_PURPLE = @"PURPLE";
 
 - (void) setNumber:(NSNumber *)number {
     if ([[SetCard validNumbers] containsObject:number]) {
-        NSLog(@"Success, setting number to %d", number.intValue);
         _number = number;
     }
 }

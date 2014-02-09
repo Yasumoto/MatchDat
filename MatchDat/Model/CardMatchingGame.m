@@ -21,14 +21,6 @@
     return _cardsToMatch;
 }
 
-- (void) updateLastMoveWithCards:(NSArray *)cards score:(int)score {
-    NSString *move = @"";
-    for (Card *card in cards) {
-        move = [move stringByAppendingString:card.contents];
-    }
-    self.lastMove = [NSString stringWithFormat:@"%@ %d", move, score];
-}
-
 - (NSMutableArray *) cards {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
@@ -98,9 +90,6 @@ static const int COST_TO_CHOOSE = 1;
     }
     if (chosenScoreChange > 0) {
         [self setCardsToMatched:chosenUnmatchedCards];
-    }
-    for (Card *card in chosenUnmatchedCards) {
-        NSLog(@"Card: %@", card.contents);
     }
     [self updateLastMoveWithCards:chosenUnmatchedCards score:chosenScoreChange];
     self.score += chosenScoreChange;

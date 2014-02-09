@@ -19,8 +19,9 @@
     return [[PlayingCardDeck alloc] init];
 }
 
-- (NSString *) titleForCard:(Card *)card {
-    return card.isChosen ? card.contents : @"";
+- (NSAttributedString *) titleForCard:(Card *)card {
+    NSString *title = card.isChosen ? card.contents : @"";
+    return [[NSAttributedString alloc] initWithString:title];
 }
 
 - (UIImage *) backgroundImageForCard:(Card *) card {

@@ -90,11 +90,19 @@
     [self updateUI];
 }
 
+- (void) updateLastMoveWithCards:(NSArray *)cards score:(int)score {
+    NSAttributedString *move = [[NSAttributedString alloc] init];
+    for (Card *card in cards) {
+        [move append:[self titleForCard:card]];
+    }
+    self.lastMove = [NSAttributedString stringWithFormat:@"%@ %d", move, score];
+}
+
 - (void) updateUI {
     for (UIButton *cardButton in self.cardButtons) {
         int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardButtonIndex];
-        [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+        [cardButton setAttributedTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
@@ -104,7 +112,7 @@
     self.matchDescriptionLabel.text = self.game.lastMove;
 }
 
-- (NSString *) titleForCard:(Card *)card {
+- (NSAttributedString *) titleForCard:(Card *)card {
     return nil;
 }
 
