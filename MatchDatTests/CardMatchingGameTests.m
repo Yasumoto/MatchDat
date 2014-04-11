@@ -81,9 +81,9 @@ static const int DECK_SIZE = 10;
 
 - (void)testCardAtIndex
 {
-    self.game = [[CardMatchingGame alloc] initWithCardCount:12 usingDeck:[[MockDeck alloc] init]];
+    CardMatchingGame *game = [[CardMatchingGame alloc] initWithCardCount:12 usingDeck:[[MockDeck alloc] init]];
     for (int i = 0; i < 12; i++) {
-        PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:i];
+        PlayingCard *card = (PlayingCard *)[game cardAtIndex:i];
         XCTAssertTrue(card.rank == i, @"Expected card is not at index");
     }
 }
@@ -92,7 +92,7 @@ static const int DECK_SIZE = 10;
     self.cardOne.chosen = true;
     NSLog(@"We've chosen cardOne: %@", self.cardOne.contents);
     [self.game chooseCardAtIndex:9];
-    XCTAssertEqual(3, self.game.score);
+    XCTAssertEqual(7, self.game.score);
 }
 
 - (void) testChooseTwoCardsRank {
@@ -100,7 +100,7 @@ static const int DECK_SIZE = 10;
     self.cardOne.suit = [PlayingCard validSuits][1];
     self.cardOne.chosen = true;
     [self.game chooseCardAtIndex:5];
-    XCTAssertEqual(15, self.game.score);
+    XCTAssertEqual(31, self.game.score);
 }
 
 - (void) testChooseThreeCardsSuit {
