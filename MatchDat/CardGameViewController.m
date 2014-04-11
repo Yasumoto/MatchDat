@@ -64,13 +64,13 @@
 - (IBAction)touchCardButton:(UIButton *)sender {
     self.maxMatchedCardsSegmentedControl.enabled = false;
     if (self.maxMatchedCardsSegmentedControl.selectedSegmentIndex == 0) {
-        int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+        NSUInteger chosenButtonIndex = [self.cardButtons indexOfObject:sender];
         [self.game chooseCardAtIndex:chosenButtonIndex];
         if (self.game.lastMove) [self.history addObject:self.game.lastMove];
     }
     else {
         self.game.cardsToMatch = 3;
-        NSNumber *chosenButtonIndex = [NSNumber numberWithInt:[self.cardButtons indexOfObject:sender]];
+        NSNumber *chosenButtonIndex = [NSNumber numberWithUnsignedLong:[self.cardButtons indexOfObject:sender]];
         [self.cardIndices addObject:chosenButtonIndex];
         if (self.cardIndices.count == 3) {
             for (NSNumber *chosenCardIndex in self.cardIndices) {
@@ -92,12 +92,12 @@
 
 - (void) updateUI {
     for (UIButton *cardButton in self.cardButtons) {
-        int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
+        NSUInteger cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardButtonIndex];
         [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
-        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
     }
     self.historySlider.maximumValue = self.history.count;
     self.historySlider.value = self.historySlider.maximumValue;
