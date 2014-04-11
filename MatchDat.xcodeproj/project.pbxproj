@@ -33,6 +33,7 @@
 		40B19376184DB09D00639F74 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B19375184DB09D00639F74 /* PlayingCard.m */; };
 		40B19379184DB67100639F74 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B19378184DB67100639F74 /* PlayingCardDeck.m */; };
 		D89481011858122000BAFDAE /* PlayingCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D89481001858122000BAFDAE /* PlayingCardTests.m */; };
+		D8E4F3DC18F7A89C00631E1C /* CardMatchingGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E4F3DB18F7A89C00631E1C /* CardMatchingGameTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		40B19377184DB67100639F74 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		40B19378184DB67100639F74 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		D89481001858122000BAFDAE /* PlayingCardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardTests.m; sourceTree = "<group>"; };
+		D8E4F3DB18F7A89C00631E1C /* CardMatchingGameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGameTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,8 +203,12 @@
 			isa = PBXGroup;
 			children = (
 				40B19362184D9F5800639F74 /* MatchDatTests.m */,
+<<<<<<< HEAD
 				D89481001858122000BAFDAE /* PlayingCardTests.m */,
 				40ACA328185EDAB6003FE6D9 /* CardMatchingGameTests.m */,
+=======
+				D8E4F3DB18F7A89C00631E1C /* CardMatchingGameTests.m */,
+>>>>>>> Tests for CardMatchingGame
 				40B1935D184D9F5800639F74 /* Supporting Files */,
 			);
 			path = MatchDatTests;

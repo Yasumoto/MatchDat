@@ -24,6 +24,34 @@
 
 static const int DECK_SIZE = 10;
 
+@interface MockDeck : Deck
+@property (nonatomic, strong) NSMutableArray *cards;
+@end
+
+@implementation MockDeck
+- (instancetype) init {
+    self = [super init];
+    if (self) {
+        self.cards = [[NSMutableArray alloc] initWithCapacity:12];
+        for (NSUInteger i = 0; i < 12; i++) {
+            PlayingCard *card = [[PlayingCard alloc] init];
+            card.suit = [[PlayingCard validSuits] objectAtIndex:0];
+            card.rank = i;
+            [self.cards addObject:card];
+        }
+    }
+
+    return self;
+}
+
+- (PlayingCard *) drawRandomCard {
+    PlayingCard* card = (PlayingCard *)[self.cards firstObject];
+    [self.cards removeObjectAtIndex:0];
+    return card;
+}
+
+@end
+
 @implementation CardMatchingGameTests
 
 - (Deck *) deck {
@@ -49,6 +77,15 @@ static const int DECK_SIZE = 10;
 - (void) setUp {
     [super setUp];
     self.game = [[CardMatchingGame alloc] initWithCardCount:DECK_SIZE usingDeck:self.deck];
+}
+
+- (void)testCardAtIndex
+{
+    self.game = [[CardMatchingGame alloc] initWithCardCount:12 usingDeck:[[MockDeck alloc] init]];
+    for (int i = 0; i < 12; i++) {
+        PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:i];
+        XCTAssertTrue(card.rank == i, @"Expected card is not at index");
+    }
 }
 
 - (void) testChooseTwoCardsSuit {
